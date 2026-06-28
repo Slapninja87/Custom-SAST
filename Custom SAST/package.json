@@ -1,0 +1,13 @@
+{
+  "name": "custom-sast",
+  "version": "1.0.0",
+  "description": "A high-performance, local command-line engine built to evaluate source code frameworks for critical security flaws. It parses code files line-by-line using a prioritized regular expression matrix to identify vulnerabilities, calculate risk metrics, and return context-aware exit codes designed to break CI/CD automation pipelines if threats are detected.",
+  "main": "sast-scanner.js",
+  "scripts": {
+	"scan": "node sast-scanner.js ./target_app",
+	"test": "echo \"Error: no test specified\" && exit 1"
+}
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

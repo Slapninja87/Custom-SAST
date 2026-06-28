@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "target": "C:\\Users\\Sami_\\OneDrive\\Desktop\\GitHub Projects\\Custom SAST\\target_app",
+    "filesScanned": 1,
+    "timestamp": "2026-06-27T23:59:36.446Z",
+    "ruleCount": 19
+  },
+  "findings": [
+    {
+      "ruleId": "SAST-001",
+      "ruleName": "Hardcoded Cryptographic Secret / Token",
+      "severity": "CRITICAL",
+      "filePath": "target_app\\index.js",
+      "lineNumber": 5,
+      "evidence": "const jwt_secret = \"super_secret_signing_key_abc123_dont_share\";",
+      "description": "Plain-text credential found in source. Rotate immediately and store in environment variables or a secrets vault (HashiCorp Vault, AWS Secrets Manager)."
+    },
+    {
+      "ruleId": "SAST-001",
+      "ruleName": "Hardcoded Cryptographic Secret / Token",
+      "severity": "CRITICAL",
+      "filePath": "target_app\\index.js",
+      "lineNumber": 6,
+      "evidence": "const apiKey = 'AIzaSyA1_unprotected_cloud_key';",
+      "description": "Plain-text credential found in source. Rotate immediately and store in environment variables or a secrets vault (HashiCorp Vault, AWS Secrets Manager)."
+    },
+    {
+      "ruleId": "SAST-002",
+      "ruleName": "SQL Injection via String Interpolation",
+      "severity": "HIGH",
+      "filePath": "target_app\\index.js",
+      "lineNumber": 12,
+      "evidence": "const query = `SELECT * FROM users WHERE id = ${userInputId}`;",
+      "description": "Raw string interpolation in SQL query. Use parameterized queries or an ORM (Knex, Sequelize, Prisma)."
+    },
+    {
+      "ruleId": "SAST-003",
+      "ruleName": "Dangerous Dynamic Code Execution",
+      "severity": "HIGH",
+      "filePath": "target_app\\index.js",
+      "lineNumber": 19,
+      "evidence": "return eval(inputString);",
+      "description": "Dynamic code evaluation risks Remote Code Execution. Replace eval() with safe alternatives; use execFile() with an explicit allowlist."
+    },
+    {
+      "ruleId": "SAST-011",
+      "ruleName": "Weak Cryptographic Primitive (MD5 / SHA-1)",
+      "severity": "MEDIUM",
+      "filePath": "target_app\\index.js",
+      "lineNumber": 25,
+      "evidence": "return crypto.createHash('md5').update(password).digest('hex');",
+      "description": "MD5 and SHA-1 are cryptographically broken. Use SHA-256 for integrity or bcrypt/argon2 for password hashing."
+    }
+  ]
+}
